@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:broken # <-- for rollback test change this to 'nginx:broken'
+        image: nginx:1.21 # <-- for rollback test change this to 'nginx:broken'
         ports:
         - containerPort: 80
