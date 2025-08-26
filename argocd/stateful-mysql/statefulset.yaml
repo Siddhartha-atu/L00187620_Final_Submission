@@ -24,7 +24,7 @@ spec:
           mountPath: /var/lib/mysql
       containers:
       - name: mysql
-        image: mysql:5.7-broken
+        image: mysql:5.7
         ports:
         - containerPort: 3306
         env:
