@@ -59,8 +59,3 @@ done
 END=$(date +%s)
 echo "Rollback took $((END - START)) seconds"
 
-# Optional: verify MySQL data
-# Uncomment and set password if you want verification
-# MYSQL_PASS="rootpass"
-# kubectl exec -it $POD -c mysql -n $NAMESPACE -- \
-#   mysql -u root -p"$MYSQL_PASS" -e "SHOW DATABASES;"

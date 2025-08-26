@@ -3,7 +3,7 @@
 # Record start time
 START=$(date +%s)
 
-# Rollback to the desired revision (replace 1 with the revision you want)
+# Rollback to the desired revision 
 REVISION=1
 echo "Rolling back nginx-app to revision $REVISION..."
 helm rollback nginx-app $REVISION -n stateless
