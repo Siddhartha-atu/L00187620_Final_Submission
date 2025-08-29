@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 40s
-  path: ./apps/mysql
+  path: fluxcd/apps/mysql
   prune: true
   sourceRef:
     kind: GitRepository
