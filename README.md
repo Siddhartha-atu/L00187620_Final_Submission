@@ -8,6 +8,36 @@ The practical part of the work where testing rollback strategies of stateless an
  *   Stateless workload: NGINX with a LoadBalancer Service.
  *   Stateful workload: MySQL with a Headless Service.
  *   First deployments were done on raw Kubernetes manifests.
+ *   Below is the code snippet for cluster creation for testing.
+    export CLUSTER=mysql-eks
+    export AWS_REGION=eu-west-1
+
+    eksctl create cluster \
+    --name $CLUSTER \
+    --region $AWS_REGION \
+    --version 1.29 \
+    --managed \
+    --node-type t3.medium \
+    --nodes 2 \
+    --with-oidc
+
+This allows the CSI driver to provision EBS volumes dynamically:
+eksctl create iamserviceaccount \
+  --name ebs-csi-controller-sa \
+  --namespace kube-system \
+  --cluster $CLUSTER \
+  --role-name AmazonEKS_EBS_CSI_DriverRole \
+  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
+  --approve
+
+
+eksctl create addon \
+  --name aws-ebs-csi-driver \
+  --cluster $CLUSTER \
+  --region $AWS_REGION \
+  --force
+
+
 
 2. Helm Integration:
 
