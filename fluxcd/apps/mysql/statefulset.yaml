@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: mysql-app
+      annotations:
+        fluxcd.io/restartedAt: "2025-08-29T13:00:00Z" # change timestamp to trigger rollout
     spec:
       initContainers:
       - name: init-mysql
@@ -23,7 +25,7 @@ spec:
           mountPath: /var/lib/mysql
       containers:
       - name: mysql
-        image: mysql:5.7-broken
+        image: mysql:5.7-broken # faulty image
         ports:
         - containerPort: 3306
         env:
